@@ -1,0 +1,45 @@
+algoritmo encontrar_circuito(Grafo: matriz de booleanos) -> booleano
+    n <- tamanho(Grafo)
+    estado <- vetor de enumeração com tamanho n, inicializado com "nao_atingido" 
+    // aqui começamos com todos nao atingidos.
+    
+    para cada vértice v em V faça
+        se estado[v] = "nao_atingido" então
+            se tem_circuito(v, Grafo, estado) então
+            // percorrendo o grafo e chamando a funçao principal.
+                retorne verdadeiro
+                // retornando verdadeiro se encontrar um circuito no grafo. 
+
+    retorne falso
+    // aqui é caso nao tenha sido encontrado um circuito.
+
+função tem_circuito(v: inteiro, Grafo: matriz de booleanos, estado: vetor de enumeração) -> booleano
+    // marcamos o estado como no caminho atual, ou seja, percorrendo ele.
+    estado[v] <- "no_caminho"
+
+    para cada vértice u vizinho de v faça
+    // pegando os vizinhos de saida do grafo direcionado, nos conferimos se esta no caminho atual.
+        se estado[u] = "no_caminho" então
+            // se estiver, é um circuito.
+            retorne verdadeiro
+        senão se estado[u] = "nao_atingido" então
+            // agora, se estiver nao atingido...
+            se tem_circuito(u, Grafo, estado) então
+                // mas chamarmos recursivamente a funçao, e tiver de fato um circuito, retornamos verdadeiro.
+                retorne verdadeiro
+
+    estado[v] <- "finalizado"
+    // marcamos como finalizado o vertice.
+    retorne falso
+
+Algoritmo principal
+    n <- número de vértices do grafo
+    Grafo <- matriz de adjacências do grafo
+
+    possui_circuito <- encontrar_circuito(Grafo)
+    // possui ciurcuito seria mais para uma visualização clara do funcionamento do algoritmo.
+
+    se possui_circuito então
+        imprima "O grafo possui um circuito"
+    senão
+        imprima "O grafo não possui circuito"
