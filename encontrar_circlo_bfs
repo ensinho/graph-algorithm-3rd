@@ -1,0 +1,35 @@
+função tem_circuito_bfs(grafo, n):
+    // aqui utilizamos a fila, em vez de uma pilha como é no dfs.
+    fila = fila_vazia()
+    estado = [não_atingido] * n
+    pai = [nenhum] * n
+
+    para cada vértice v em grafo:
+        // percorrendo o grafo, conferimos seu estado
+        se estado[v] == não_atingido:
+            enfileirar(fila, v)
+            // enfileiramos ele em nossa fila.
+            estado[v] = no_caminho
+            // depois alteramos o seu estado.
+
+            enquanto não_vazia(fila):
+                // enquanto essa fila nao for vazia, nos retiramos o primeiro elemento
+                u = desenfileirar(fila)
+                estado[u] = finalizado
+                // e marcamos como finalizado.
+
+                para cada vizinho v de u em grafo:
+                    // percorrendo os vizinhos de saida desse vertice
+                    se estado[v] == não_atingido:
+                        enfileirar(fila, v)
+                        estado[v] = no_caminho
+                        pai[v] = u
+                        // conferimos seu estado, enfileiramos esse, e alteramos seu estado atual, alem de criar e identificar
+                        // um "pai" a esse vertice.
+
+                    senão, se estado[v] == no_caminho:
+                        // se ja estiver no caminho, encontramos um ciclo.
+                        return verdadeiro
+
+    // aqui nao foi encontrado nenhum ciclo.
+    return falso
