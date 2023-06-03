@@ -1,0 +1,33 @@
+função tem_circuito(v, estado, grafo):
+    // começamos marcando o estado como no caminho.
+    estado[v] <- "no_caminho"
+    
+    para cada vizinho u de v em grafo:
+        // para cada vizinho de saida conferimos se:
+        se estado[u] é "no_caminho":
+            // se o vertice esta no caminho atual
+            retornar verdadeiro  
+            // encontrou um circuito
+        
+        se estado[u] é "nao_atingido" e tem_circuito(u, estado, grafo):
+            // com a utilização do "e", conferimos se o vertice nao esta no caminho
+            // e se existe um circuito, com o chamado recursivo da função.
+            retornar verdadeiro
+    
+    estado[v] <- "finalizado"
+    // marcamos como finalizado.
+    retornar falso
+
+função encontrar_circuito(grafo):
+    //função principal.
+    n <- tamanho do grafo
+    estado <- vetor de tamanho n preenchido com "nao_atingido"
+    
+    para cada vértice v em grafo:
+        // percorrendo o grafo, conferimos se o estado do vertice é nao atingid, ou seja, se nao começamos
+        // ou se nao faz parte do nosso circuito, e garantimos com o "e" o verdadeiro da função tem_circuito.
+        se estado[v] é "nao_atingido" e tem_circuito(v, estado, grafo):
+            retornar verdadeiro
+             // retornando verdadeiro, pois encontramos um circuito.
+    
+    retornar falso
