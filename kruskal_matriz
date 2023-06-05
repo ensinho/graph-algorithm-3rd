@@ -1,0 +1,44 @@
+ encontrar_representante(u):
+    enquanto represent[u] != u:
+        u <- represent[u]
+    
+    retornar u
+
+ unir_conjuntos(u, v):
+    rep_u <- encontrar_representante(u)
+    rep_v <- encontrar_representante(v)
+    
+    represent[rep_v] <- rep_u
+
+algoritmo kruskal(adjacencias):
+    n <- tamanho da matriz adjacencias
+    L <- lista vazia
+    A <- conjunto vazio
+    represent <- vetor [0,...,n-1] de inteiros
+    comp <- vetor [0,...,n-1] de inteiros
+    
+    para u em V:
+        comp[u] <- novo_nó(u, nulo)
+        # criando os respectivos nós para os vertices.
+        represent[u] <- u
+        # nomeando cada vertice como seu proprio representante.
+    
+    para u em V:
+        para v em V:
+          # percorrendo a matriz.
+            se adjacencias[u][v] != infinito: 
+              # se nao houver um peso no infinito prosseguimos adicionando as arestas.
+                L.adicionar({u, v, adjacencias[u][v]})
+    
+    L.ordenar_por_peso()
+    # ordenando por peso.
+    
+    enquanto tamanho(A) != n-1:
+    # enquanto nao tiver o tamanho de arvore.
+        {u, v, peso} <- L.remover_primeiro()
+        #removemos a primeira.
+        se encontrar_represent(u) != encontrar_represent(v):
+            A.adicionar({u, v})
+            unir_conjuntos(u, v)
+    
+    retornar A
