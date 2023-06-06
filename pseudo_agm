@@ -31,6 +31,7 @@ enquanto tamanho(A) != n-1 faça
         z <- comp[y].primeiro
         // Z aponta para o proximo do ultimo de X.
         comp[x].ultimo.proximo <- z
+        // o ultimo da maior, aponta pro primeiro da menor, pq ai vai atualizando.
         comp[x].ultimo <- comp[y].ultimo
         // o ultimo de Y aponta para o ultimo de X.
         comp[x].tamanho <- comp[x].tamanho + comp[y].tamanho
