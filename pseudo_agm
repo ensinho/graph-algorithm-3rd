@@ -39,6 +39,7 @@ enquanto tamanho(A) != n-1 faça
         enquanto z != nulo faça
             // aqui finalizamos o nó de Z.
             represent[z.elemento] <- x
+            // pra atualizar todos os representantes da menor, para a atual maior.
             z <- z.proximo
 
 retorne A
