@@ -1,4 +1,4 @@
-L <- lista com as arestas do grafo ordenadas por w em ordem crescente
+L <- lista com as arestas do grafo ordenadas por w em ordem crescente => O( m log m )
 A <- conjunto vazio de arestas
 represent <- vetor [0,...,n-1] de inteiros
 comp <- vetor [0,...,n-1] de nós
@@ -36,7 +36,7 @@ enquanto tamanho(A) != n-1 faça
         // o ultimo de Y aponta para o ultimo de X.
         comp[x].tamanho <- comp[x].tamanho + comp[y].tamanho
         // unimos os conjuntos, ou seja, somamos os tamanhos.
-        enquanto z != nulo faça
+        enquanto z != nulo faça => O ( n log n ) 
             // aqui finalizamos o nó de Z.
             represent[z.elemento] <- x
             // pra atualizar todos os representantes da menor, para a atual maior.
